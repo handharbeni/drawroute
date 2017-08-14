@@ -1,12 +1,12 @@
 apply plugin: 'com.github.dcendents.android-maven'
-group = 'illiyin.mhandharbeni.drawroute' // CREATE A GROUP ID FOR YOUR LIBRARY
+group = 'illiyin.mhandharbeni.libraryroute' // CREATE A GROUP ID FOR YOUR LIBRARY
 
 install {
     repositories.mavenInstaller {
         pom {
             project {
                 packaging 'aar'
-                groupId 'illiyin.mhandharbeni.drawroute' // CREATE A GROUP ID FOR YOUR LIBRARY
+                groupId 'illiyin.mhandharbeni.libraryroute' // CREATE A GROUP ID FOR YOUR LIBRARY
                 artifactId 'drawroute' // THE NAME OF YOUR MODULE
 
                 name 'drawroute' // YOUR LIBRARY NAME
