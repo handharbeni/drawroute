@@ -32,3 +32,5 @@ dependencies {
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     testCompile 'junit:junit:4.12'
 }
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
