@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class Steps {
 
     private RoutePoints rp = new RoutePoints();
-    public static ArrayList<LatLng> accuratePath = new ArrayList<LatLng>();
-    public static ArrayList<LatLng> routepath1 = new ArrayList<LatLng>();
-    public static ArrayList<LatLng> routepath2 = new ArrayList<LatLng>();
+    public static ArrayList<LatLng> accuratePath = new ArrayList<>();
+    public static ArrayList<LatLng> routepath1 = new ArrayList<>();
+    public static ArrayList<LatLng> routepath2 = new ArrayList<>();
     private LatLng start;
     private LatLng end;
     private String travelMode;

@@ -1,5 +1,6 @@
 package illiyin.mhandharbeni.libraryroute;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,6 +37,7 @@ import static android.content.ContentValues.TAG;
 
 public class Navigation {
     private Context context;
+    private String key;
     private LatLng startPosition, endPosition;
     private String mode;
     private boolean showCalc;
@@ -52,7 +54,8 @@ public class Navigation {
     private ArrayList<Polyline> lines = new ArrayList<>();
     private Activity activity;
 
-    public Navigation(GoogleMap map, LatLng startLocation, LatLng endLocation, Context context, Activity activity){
+    public Navigation(GoogleMap map, LatLng startLocation, LatLng endLocation, Context context, Activity activity, String key){
+        this.key = key;
         this.startPosition = startLocation;
         this.endPosition = endLocation;
         this.map = map;
@@ -66,18 +69,18 @@ public class Navigation {
     }
 
     public interface OnPathSetListener{
-        public void onPathSetListener(Directions directions);
+        void onPathSetListener(Directions directions);
     }
 
     public void setOnPathSetListener(OnPathSetListener listener){
         this.listener = listener;
     }
 
-    public LatLng getStartPoint(){
+    private LatLng getStartPoint(){
         return startPosition;
     }
 
-    public LatLng getEndPoint(){
+    private LatLng getEndPoint(){
         return endPosition;
     }
 
@@ -142,7 +145,6 @@ public class Navigation {
                 break;
             case 1:
                 this.mode = "transit";
-                this.arrivalTime = arrivalTime;
                 break;
             case 2:
                 this.mode = "bicycling";
@@ -193,6 +195,7 @@ public class Navigation {
         return lines;
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class PathCreator extends AsyncTask<Void,Void,Directions> {
         private ProgressDialog pd;
         @Override
@@ -213,7 +216,8 @@ public class Navigation {
             String url = "http://maps.googleapis.com/maps/api/directions/json?"
                     + "origin=" + startPosition.latitude + "," + startPosition.longitude
                     + "&destination=" + endPosition.latitude + "," + endPosition.longitude
-                    + "&sensor=false&units=metric&mode="+mode+"&alternatives="+String.valueOf(alternatives);
+                    + "&sensor=false&units=metric&mode="+mode+"&alternatives="+String.valueOf(alternatives)
+                    + "&key="+key;
 
             if(mode.equals("transit")){
                 if(arrivalTime > 0){
@@ -283,7 +287,7 @@ public class Navigation {
         }
 
     }
-    public void zoomMaps(){
+    private void zoomMaps(){
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(getStartPoint());
         builder.include(getEndPoint());

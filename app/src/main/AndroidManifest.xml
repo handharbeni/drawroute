@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="illiyin.mhandharbeni.routemaps">
 
     <!--
@@ -26,6 +27,7 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/. 
         -->
         <meta-data
+            tools:replace="android:value"
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 

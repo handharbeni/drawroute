@@ -50,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         start = new LatLng(-8.0074737,112.6243809);
         end = new LatLng(-7.9825665,112.6118265);
-        Navigation nav = new Navigation(mMap,start,end,getApplicationContext(), this);
+        Navigation nav = new Navigation(mMap,start,end,getApplicationContext(), this, getResources().getString(R.string.google_maps_key));
         nav.find(
                 true,
                 false,

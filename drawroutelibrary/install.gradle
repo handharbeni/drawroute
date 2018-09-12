@@ -1,0 +1,38 @@
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.mhandharbeni.map'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.mhandharbeni.map'
+                artifactId 'drawroutelibrary'
+
+                name 'drawroutelibrary'
+                description 'Drawing Route Maps Android Between 2 Location'
+                url 'https://github.com/handharbeni/drawroute'
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'mhandharbeni'
+                        name 'Muhammad Handharbeni'
+                        email 'mhandharbeni@gmail.com'
+                    }
+                }
+                scm {
+                    connection 'https://github.com/handharbeni/drawroute.git'
+                    developerConnection 'https://github.com/handharbeni/drawroute.git'
+                    url 'https://github.com/handharbeni/drawroute'
+
+                }
+            }
+        }
+    }
+}

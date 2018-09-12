@@ -18,12 +18,12 @@ import java.util.ArrayList;
 public class Route {
 
     private Steps stps=new Steps();
-    private ArrayList<LatLng> accuratePath1=new ArrayList<LatLng>();
-    private ArrayList<LatLng> accuratePath2=new ArrayList<LatLng>();
-    private ArrayList<LatLng> accuratePath3=new ArrayList<LatLng>();
-    private ArrayList<LatLng> path = new ArrayList<LatLng>();
+    private ArrayList<LatLng> accuratePath1= new ArrayList<>();
+    private ArrayList<LatLng> accuratePath2= new ArrayList<>();
+    private ArrayList<LatLng> accuratePath3= new ArrayList<>();
+    private ArrayList<LatLng> path = new ArrayList<>();
 
-    private ArrayList<Legs> legs = new ArrayList<Legs>();
+    private ArrayList<Legs> legs = new ArrayList<>();
     private String totalDuration;
     private String totalDistance;
     private LatLng startLoc;
