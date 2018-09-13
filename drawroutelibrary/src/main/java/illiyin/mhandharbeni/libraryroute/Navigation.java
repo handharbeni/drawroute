@@ -213,7 +213,7 @@ public class Navigation {
                 mode = "driving";
             }
 
-            String url = "http://maps.googleapis.com/maps/api/directions/json?"
+            String url = "https://maps.googleapis.com/maps/api/directions/json?"
                     + "origin=" + startPosition.latitude + "," + startPosition.longitude
                     + "&destination=" + endPosition.latitude + "," + endPosition.longitude
                     + "&sensor=false&units=metric&mode="+mode+"&alternatives="+String.valueOf(alternatives)
