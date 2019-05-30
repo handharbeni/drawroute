@@ -30,6 +30,7 @@ import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
+import static illiyin.mhandharbeni.libraryroute.Navigation.Mode.DRIVING;
 
 /**
  * Created by root on 11/08/17.
@@ -54,7 +55,21 @@ public class Navigation {
     private ArrayList<Polyline> lines = new ArrayList<>();
     private Activity activity;
 
-    public Navigation(GoogleMap map, LatLng startLocation, LatLng endLocation, Context context, Activity activity, String key){
+    public enum Mode{
+        DRIVING,
+        TRANSIT,
+        BICYCLING,
+        WALKING
+    }
+
+    public Navigation(
+            GoogleMap map,
+            LatLng startLocation,
+            LatLng endLocation,
+            Context context,
+            Activity activity,
+            String key
+    ){
         this.key = key;
         this.startPosition = startLocation;
         this.endPosition = endLocation;
@@ -65,7 +80,6 @@ public class Navigation {
         Steps.accuratePath.clear();
         Steps.routepath1.clear();
         Steps.routepath2.clear();
-
     }
 
     public interface OnPathSetListener{
@@ -105,20 +119,19 @@ public class Navigation {
                 .position(latLng)
                 .title(caption));
     }
-    public void setMode(int mode, long arrivalTime,int avoid){
+    public void setMode(Mode mode, long arrivalTime, int avoid){
         switch(mode){
-
-            case 0:
+            case DRIVING:
                 this.mode = "driving";
                 break;
-            case 1:
+            case TRANSIT:
                 this.mode = "transit";
                 this.arrivalTime = arrivalTime;
                 break;
-            case 2:
+            case BICYCLING:
                 this.mode = "bicycling";
                 break;
-            case 3:
+            case WALKING:
                 this.mode = "walking";
                 break;
             default:
@@ -137,19 +150,19 @@ public class Navigation {
                 break;
         }
     }
-    public void setMode(int mode, int avoid){
+    public void setMode(Mode mode, int avoid){
         switch(mode){
 
-            case 0:
+            case DRIVING:
                 this.mode = "driving";
                 break;
-            case 1:
+            case TRANSIT:
                 this.mode = "transit";
                 break;
-            case 2:
+            case BICYCLING:
                 this.mode = "bicycling";
                 break;
-            case 3:
+            case WALKING:
                 this.mode = "walking";
                 break;
             default:
