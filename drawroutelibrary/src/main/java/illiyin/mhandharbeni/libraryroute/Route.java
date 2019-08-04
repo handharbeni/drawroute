@@ -11,6 +11,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by root on 11/08/17.
  */
@@ -38,12 +40,15 @@ public class Route {
 
 
     private void parseRoute(JSONObject obj3,int k){
+        Log.d(TAG, "parseDirections parseRoute: ");
         try{
             if(!obj3.isNull("legs")){
                 JSONArray leg = obj3.getJSONArray("legs");
-                Log.e("leg length", ""+leg.length());
                 for(int i=0; i<leg.length();i++){
                     JSONObject obj = leg.getJSONObject(i);
+                    Constant.totalDistance=Integer.valueOf(obj.getJSONObject("distance").getString("value"));
+                    Constant.totalDuration=Integer.valueOf(obj.getJSONObject("duration").getString("value"));
+                    Log.d(TAG, "parseDirections parseRoute: value"+Constant.totalDistance);
                     if(i == 0){
                         if(!obj.isNull("start_address")){
                             startAddress = obj.getString("start_address");
@@ -56,7 +61,6 @@ public class Route {
                     }
 
                     legs.add(new Legs(obj,k));
-
                 }
             }
 
@@ -65,16 +69,17 @@ public class Route {
 
                 for(int i=0; i<obj.length();i++){
                     JSONObject obj2 = obj.getJSONObject(i);
-                    totalDuration = obj2.getString("text");
+                    totalDuration = obj2.getString("value");
                 }
             }
 
             if(!obj3.isNull("distance")){
                 JSONArray obj = obj3.getJSONArray("distance");
-
+                Log.d(TAG, "parseDirections parseRoute: "+obj);
                 for(int i=0; i<obj.length();i++){
                     JSONObject obj2 = obj.getJSONObject(i);
-                    totalDistance = obj2.getString("text");
+                    Log.d(TAG, "parseDirections parseRoute: "+obj2);
+                    totalDistance = obj2.getString("value");
                 }
             }
 
@@ -124,6 +129,7 @@ public class Route {
             }
         }catch(JSONException e){
             e.printStackTrace();
+            Log.d(TAG, "parseDirections parseRoute: error "+e);
         }
 
     }
@@ -220,7 +226,6 @@ public class Route {
     public LatLng getEndLocation(){
         return endLoc;
     }
-
 
     public ArrayList<LatLng>getaccuratepath(){
         return accuratePath1;

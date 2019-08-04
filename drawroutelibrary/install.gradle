@@ -1,15 +1,19 @@
 apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.mhandharbeni.map'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+
 install {
     repositories.mavenInstaller {
         pom {
             project {
                 packaging 'aar'
                 groupId 'com.mhandharbeni.map'
-                artifactId 'drawroutelibrary'
+                artifactId properties.getProperty("bintray.packagename")
 
-                name 'drawroutelibrary'
+                name properties.getProperty("bintray.packagename")
                 description 'Drawing Route Maps Android Between 2 Location'
                 url 'https://github.com/handharbeni/drawroute'
 
@@ -30,7 +34,6 @@ install {
                     connection 'https://github.com/handharbeni/drawroute.git'
                     developerConnection 'https://github.com/handharbeni/drawroute.git'
                     url 'https://github.com/handharbeni/drawroute'
-
                 }
             }
         }

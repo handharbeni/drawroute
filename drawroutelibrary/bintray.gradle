@@ -1,6 +1,6 @@
 apply plugin: 'com.jfrog.bintray'
 
-version = "0.0.2"
+version = "0.0.7"
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -31,7 +31,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = 'maven'
-        name = 'drawroutelibrary'
+        name = properties.getProperty("bintray.packagename")
         desc = 'Drawing Route Maps Android Between 2 Location.'
         websiteUrl = 'https://github.com/handharbeni/drawroute'
         vcsUrl = 'https://github.com/handharbeni/drawroute.git'

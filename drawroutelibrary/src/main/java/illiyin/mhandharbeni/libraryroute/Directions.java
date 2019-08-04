@@ -8,24 +8,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by root on 11/08/17.
  */
 
 public class Directions {
-
-    private ArrayList<Route> routes = new ArrayList<Route>();
+    private static ArrayList<Route> routes = new ArrayList<>();
     private String directions;
-
     public enum DrivingMode{
         DRIVING,MASS_TRANSIT,BYCICLE,WALKING
     }
-
     public enum Avoid{
         TOLLS,HIGHWAYS,NONE
     }
-
-    public Directions(String directions){
+    Directions(String directions){
         this.directions = directions;
 
         if(directions != null){
@@ -33,7 +31,6 @@ public class Directions {
         }
 
     }
-
     private void parseDirections(){
         try {
             JSONObject json = new JSONObject(directions);
@@ -41,9 +38,8 @@ public class Directions {
 
             if(!json.isNull("routes")){
                 JSONArray route = json.getJSONArray("routes");
-                Log.e("Route length", ""+route.length());
+                Log.d(TAG, "parseDirections: routeLength "+route.length());
                 for(int k=0;k<route.length(); k++){
-
                     JSONObject obj3 = route.getJSONObject(k);
                     routes.add(new Route(obj3,k));
                 }
@@ -53,9 +49,7 @@ public class Directions {
             e.printStackTrace();
         }
     }
-
     public ArrayList<Route> getRoutes(){
         return routes;
     }
-
 }

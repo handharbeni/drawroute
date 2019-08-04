@@ -1,7 +1,5 @@
 package illiyin.mhandharbeni.libraryroute;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,8 +14,8 @@ public class Legs {
 
     private ArrayList<Steps> steps;
 
-    public Legs(JSONObject leg , int y){
-        steps = new ArrayList<Steps>();
+    Legs(JSONObject leg, int y){
+        steps = new ArrayList<>();
         parseSteps(leg,y);
     }
 
